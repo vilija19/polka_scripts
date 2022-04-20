@@ -4,6 +4,7 @@ cd
 mkdir ~/update (only first time)  
 cd update  
 wget https://raw.githubusercontent.com/vilija19/polka_scripts/main/update_node   (only first time)  
+chmod +x update_node  
 ./update_node <version> (without the v in version). Example: ./update_node 0.9.8  
   
 kusama: User running the service (change accordingly in chown kusama:kusama)   
