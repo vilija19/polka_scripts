@@ -1,0 +1,24 @@
+#! /bin/bash
+# based on https://gist.github.com/michalisFr/daa01c7374793a684a3a1f61e4959492
+
+wget https://github.com/paritytech/polkadot/releases/download/v$1/polkadot && \
+wget https://github.com/paritytech/polkadot/releases/download/v$1/polkadot.sha256 && \
+sed -i 's+./artifacts/polkadot+polkadot+g' polkadot.sha256
+
+if sha256sum -c polkadot.sha256 2>&1 | grep -q 'OK'
+then 
+        echo "** SHA256 matches **"
+        chmod +x polkadot && \
+        sudo chown kusama:kusama polkadot && \
+        sudo systemctl stop ksm-validator.service && \
+        mv /home/kusama/polkadot/target/release/polkadot /home/kusama/polkadot/target/release/polkadot_backupfor && \
+        mv polkadot /home/kusama/polkadot/target/release/polkadot && \
+        rm polkadot.sha256 && \
+        sudo systemctl start ksm-validator.service && \
+        sudo journalctl -f -u ksm-validator.service
+else
+        echo "** SHA256 doesn't match. Aborting **"
+        rm polkadot*
+fi
+
+echo done!
