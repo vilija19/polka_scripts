@@ -1,16 +1,17 @@
 #! /bin/bash
 # based on https://gist.github.com/michalisFr/daa01c7374793a684a3a1f61e4959492
-# https://github.com/paritytech/polkadot-sdk/releases/download/polkadot-v1.1.0/polkadot
+# https://github.com/paritytech/polkadot-sdk/releases/download/v1.1.0/polkadot
 
 # !!!! Change variables below to your own !!!!
 USER=polkadot
 SERVICE_NAME=polkadot.service
 BIN_DIR=/usr/bin
+BASE_URL=https://github.com/paritytech/polkadot-sdk/releases/download/
 
-wget https://github.com/paritytech/polkadot-sdk/releases/download/polkadot-v$1/polkadot && \
-wget https://github.com/paritytech/polkadot-sdk/releases/download/polkadot-v$1/polkadot.sha256 && \
-wget https://github.com/paritytech/polkadot-sdk/releases/download/polkadot-v$1/polkadot-execute-worker && \
-wget https://github.com/paritytech/polkadot-sdk/releases/download/polkadot-v$1/polkadot-prepare-worker && \
+wget ${BASE_URL}v$1/polkadot && \
+wget ${BASE_URL}v$1/polkadot.sha256 && \
+wget ${BASE_URL}v$1/polkadot-execute-worker && \
+wget ${BASE_URL}v$1/polkadot-prepare-worker && \
 sed -i 's+./artifacts/polkadot+polkadot+g' polkadot.sha256
 
 if sha256sum -c polkadot.sha256 2>&1 | grep -q 'OK'
