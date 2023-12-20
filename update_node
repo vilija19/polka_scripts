@@ -2,11 +2,10 @@
 # based on https://gist.github.com/michalisFr/daa01c7374793a684a3a1f61e4959492
 # https://github.com/paritytech/polkadot-sdk/releases/download/v1.1.0/polkadot
 
-# !!!! Change variables below to your own !!!!
-USER=polkadot
-SERVICE_NAME=polkadot.service
-BIN_DIR=/usr/bin
-BASE_URL=https://github.com/paritytech/polkadot-sdk/releases/download/
+# Получение полного пути к директории, в которой находится скрипт
+script_dir=$(dirname "$(realpath "$0")")
+
+source ${script_dir}/.env
 
 wget ${BASE_URL}v$1/polkadot && \
 wget ${BASE_URL}v$1/polkadot.sha256 && \
