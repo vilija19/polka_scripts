@@ -17,8 +17,8 @@ E.g. https://github.com/paritytech/polkadot-sdk/releases/download/polkadot-  or 
 SERVICE_NAME -  Service name in systemctl  
 The last line journalctl will run the service logs to check the update has been successful. Exit with Ctrl+C  
 
-sudo ./update_node <version> (without the v in version).  
+sudo ./update_node <version>.  
 Example: 
-sudo ./update_node 0.9.20 
+sudo ./update_node stable2407-1
 
 Based on [https://gist.github.com/michalisFr/daa01c7374793a684a3a1f61e4959492](https://gist.github.com/michalisFr/daa01c7374793a684a3a1f61e4959492)
